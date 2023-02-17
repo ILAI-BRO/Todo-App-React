@@ -9,8 +9,13 @@ import './App.css';
 
 
 function App() {
+	const initialState = JSON.parse(window.localStorage.getItem('tasks')) || []
+    const [todos, setTodos] = useState(initialState)
 
-  const [todos, setTodos] = useState([])
+	useEffect(() => {
+		window.localStorage.setItem('tasks', JSON.stringify(todos))
+	}, [todos]) 
+//   const [todos, setTodos] = useState([])
 
   const addTodoHandler = (text) => {
     const newTodo = {
